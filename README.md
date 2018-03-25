@@ -10,6 +10,7 @@ Predict the stock market price will go up or not in the near future.
 - IDX and EIDO are Indonesia Stock Market
 
 ## Methodology
+- CNN with Residual Network architecture.
 
 ## Performance Evaluation
 - Accuracy
