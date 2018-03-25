@@ -11,6 +11,7 @@ Predict the stock market price will go up or not in the near future.
 
 ## Methodology
 - CNN with Residual Network architecture.
+- ResNet50, ResNet101, ResNet152, ResNet182
 
 ## Performance Evaluation
 - Accuracy
@@ -20,6 +21,7 @@ Predict the stock market price will go up or not in the near future.
 - F1
 
 ## Result
+20 period days using ResNet50
 | 20-res50 | TN | FN |  TP | FP |      TPR     |      FPR      |   Acc  |   Spe  |  Sens  |   MCC  |   F1   |
 |:--------:|:--:|:--:|:---:|:--:|:------------:|:-------------:|:------:|:------:|:------:|:------:|:------:|
 | EWT      | 77 | 12 | 186 | 8  | 0.9393939394 | 0.09411764706 | 92.90% | 90.60% | 93.90% | 83.50% | 93.00% |
@@ -27,6 +29,7 @@ Predict the stock market price will go up or not in the near future.
 | FTW      | 83 | 20 | 157 | 23 | 0.8870056497 | 0.2169811321  | 84.80% | 78.30% | 88.70% | 67.40% | 85.00% |
 | IDX      | 73 | 30 | 159 | 21 | 0.8412698413 | 0.2234042553  | 82.00% | 77.70% | 84.10% | 60.50% | 82.00% |
 
+10 period days using ResNet50
 | 10-res50 |  TN | FN |  TP | FP |      TPR     |      FPR     |   Acc  |   Spe  |  Sens  |   MCC  |   F1   |
 |:--------:|:---:|:--:|:---:|:--:|:------------:|:------------:|:------:|:------:|:------:|:------:|:------:|
 | EWT      | 96  | 12 | 170 | 15 | 0.9340659341 | 0.1351351351 | 90.80% | 86.50% | 93.40% | 80.30% | 91.00% |
@@ -34,6 +37,7 @@ Predict the stock market price will go up or not in the near future.
 | FTW      | 108 | 23 | 148 | 14 | 0.865497076  | 0.1147540984 | 87.40% | 88.50% | 86.50% | 74.40% | 87.00% |
 | IDX      | 97  | 23 | 149 | 24 | 0.8662790698 | 0.1983471074 | 84.00% | 80.20% | 86.60% | 66.90% | 84.00% |
 
+5 period days using ResNet50
 | 5-res50 |  TN | FN |  TP | FP |      TPR     |      FPR     |   Acc  |   Spe  |  Sens  |   MCC  |   F1   |
 |:-------:|:---:|:--:|:---:|:--:|:------------:|:------------:|:------:|:------:|:------:|:------:|:------:|
 | EWT     | 99  | 29 | 146 | 24 | 0.8342857143 | 0.1951219512 | 82.20% | 80.50% | 83.40% | 63.60% | 82.00% |
