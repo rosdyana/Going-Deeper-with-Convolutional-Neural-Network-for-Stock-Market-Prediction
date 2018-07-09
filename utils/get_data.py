@@ -31,18 +31,18 @@ def main():
 
     prefix_name = ""
     # make sure output folder is exist
-    if not os.path.isdir("stockdatas"):
-        os.mkdir("stockdatas")
+    if not os.path.isdir("../stockdatas"):
+        os.mkdir("../stockdatas")
     if len(args.prefix) > 1:
         prefix_name = args.prefix
     if args.source == "tiingo":
         for ticker in set(args.ticker):
             fetch_tiingo_data(ticker, args.start_date, args.end_date,
-                              "stockdatas/{}_{}.csv".format(ticker, prefix_name))
+                              "../stockdatas/{}_{}.csv".format(ticker, prefix_name))
     elif args.source == "yahoo":
         for ticker in set(args.ticker):
             fetch_yahoo_data(ticker, args.start_date, args.end_date,
-                             "stockdatas/{}_{}.csv".format(ticker, prefix_name), args.attempt, args.exist)
+                             "../stockdatas/{}_{}.csv".format(ticker, prefix_name), args.attempt, args.exist)
 
 
 def fetch_tiingo_data(ticker, start_date, end_date, fname):

@@ -8,7 +8,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 import argparse
 import math
-import dataset_traditional as dataset
+from utils import dataset_traditional as dataset
 
 
 def build_dataset(data_directory, img_width):

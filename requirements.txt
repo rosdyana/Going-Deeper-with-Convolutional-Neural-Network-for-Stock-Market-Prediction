@@ -1,0 +1,9 @@
+arrow==0.12.1
+keras
+fix_yahoo_finance
+pandas==0.21.1
+numpy
+pandas_datareader==0.6.0
+git+git://github.com/matplotlib/mpl_finance#egg=mpl_finance
+scikit-learn=0.19.1
+matplotlib==2.0.2

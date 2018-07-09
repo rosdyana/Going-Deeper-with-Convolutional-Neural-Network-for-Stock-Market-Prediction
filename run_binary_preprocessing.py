@@ -25,13 +25,13 @@ try:
             # get data testing
             print('{RED}\nGet Testing Data{END}'.format(**formatters))
             subprocess.call(
-                'python get_data.py -sd {} -ed {} -t {} -s yahoo -p testing'.format(testing_start_date, testing_end_date, symbol), shell=True)
+                'python utils/get_data.py -sd {} -ed {} -t {} -s yahoo -p testing'.format(testing_start_date, testing_end_date, symbol), shell=True)
             print('{GREEN}Get Testing Data Done\n{END}'.format(**formatters))
         if onlytraining:
             # get data testing
             print('{RED}\nGet Training Data{END}'.format(**formatters))
             subprocess.call(
-                'python get_data.py -sd {} -ed {} -t {} -s yahoo -p training'.format(training_start_date, training_end_date, symbol), shell=True)
+                'python utils/get_data.py -sd {} -ed {} -t {} -s yahoo -p training'.format(training_start_date, training_end_date, symbol), shell=True)
             print('{GREEN}Get Training Data Done\n{END}'.format(**formatters))
 except Exception as identifier:
     print(identifier)
