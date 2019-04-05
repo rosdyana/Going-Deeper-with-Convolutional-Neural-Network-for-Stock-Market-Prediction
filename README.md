@@ -65,5 +65,12 @@ python myDeepCNN.py -i dataset/dataset_2880TW_20_50 -e 50 -d 50 -b 8 -o outputre
 - MCC
 - F1
 
-## Result
-Paper will be publish soon.
+## Citation
+```
+@misc{1903.12258,
+Author = {Rosdyana Mangir Irawan Kusuma and Trang-Thi Ho and Wei-Chun Kao and Yu-Yen Ou and Kai-Lung Hua},
+Title = {Using Deep Learning Neural Networks and Candlestick Chart Representation to Predict Stock Market},
+Year = {2019},
+Eprint = {arXiv:1903.12258},
+}
+```
