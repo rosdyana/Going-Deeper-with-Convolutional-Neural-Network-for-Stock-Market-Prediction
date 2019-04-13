@@ -20,10 +20,16 @@ Predict the stock market price will go up or not in the near future.
 
 ## Usage
 ### Prepare Environment
+Recommended using virtual environment
+```
+python3 -m venv .env
+```
+
 Running on Python3.5
 ```
 pip install -U -r requirements.txt
 ```
+
 ### Prepare Dataset
 - Convert OHLCV stock market data to Candlestickchart
 ```

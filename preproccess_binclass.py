@@ -42,9 +42,12 @@ def main():
                         help='training or testing datasets')
     parser.add_argument('-m', '--mode',
                         help='mode of preprocessing data', required=True)
+    parser.add_argument('-v', '--use_volume',
+                        help='combine with volume.', default=False)
     args = parser.parse_args()
     if args.mode == 'ohlc2cs':
-        ohlc2cs(args.input, args.seq_len, args.dataset_type, args.dimension)
+        ohlc2cs(args.input, args.seq_len, args.dataset_type,
+                args.dimension, args.use_volume)
     if args.mode == 'createLabel':
         createLabel(args.input, args.seq_len)
     if args.mode == 'img2dt':
@@ -113,18 +116,16 @@ def createLabel(fname, seq_len):
     df.reset_index(inplace=True)
     df['Date'] = df['Date'].map(mdates.date2num)
     for i in range(0, len(df)):
-        c = df.ix[i:i + int(seq_len) + 1, :]
+        c = df.ix[i:i + int(seq_len), :]
+
         starting = 0
         endvalue = 0
         label = ""
-
-        if len(c) == int(seq_len) + 1:
-            for idx, val in enumerate(c['Close']):
-                # print(idx,val)
-                if idx == len(c) - 1:
-                    starting = float(val)
-                if idx == len(c):
-                    endvalue = float(val)
+        
+        if len(c) == int(seq_len)+1:
+            starting = c["Close"].iloc[-2] 
+            endvalue = c["Close"].iloc[-1]
+            # print(f'endvalue {endvalue} - starting {starting}')
             if endvalue > starting:
                 label = 1
             else:
@@ -141,7 +142,7 @@ def countImage(input):
     print("num of files : {}\nnum of dir : {}".format(num_file, num_dir))
 
 
-def ohlc2cs(fname, seq_len, dataset_type, dimension):
+def ohlc2cs(fname, seq_len, dataset_type, dimension, use_volume):
     # python preprocess.py -m ohlc2cs -l 20 -i stockdatas/EWT_testing.csv -t testing
     print("Converting olhc to candlestick")
     symbol = fname.split('_')[0]
@@ -160,7 +161,6 @@ def ohlc2cs(fname, seq_len, dataset_type, dimension):
     df['Date'] = df['Date'].map(mdates.date2num)
     for i in range(0, len(df)):
         # ohlc+volume
-        useVolume = False
         c = df.ix[i:i + int(seq_len) - 1, :]
         if len(c) == int(seq_len):
             my_dpi = 96
@@ -179,7 +179,7 @@ def ohlc2cs(fname, seq_len, dataset_type, dimension):
 
             # create the second axis for the volume bar-plot
             # Add a seconds axis for the volume overlay
-            if useVolume:
+            if use_volume:
                 ax2 = ax1.twinx()
                 # Plot the volume overlay
                 bc = volume_overlay(ax2, c['Open'], c['Close'], c['Volume'],
@@ -191,9 +191,9 @@ def ohlc2cs(fname, seq_len, dataset_type, dimension):
                 ax2.xaxis.set_visible(False)
                 ax2.yaxis.set_visible(False)
                 ax2.axis('off')
-            pngfile = 'dataset/{}_{}/{}/{}/{}-{}_combination.png'.format(
+            pngfile = 'dataset/{}_{}/{}/{}/{}-{}.png'.format(
                 seq_len, dimension, symbol, dataset_type, fname[11:-4], i)
-            fig.savefig(pngfile,  pad_inches=0, transparent=False)
+            fig.savefig(pngfile, pad_inches=0, transparent=False)
             plt.close(fig)
         # normal length - end
 
