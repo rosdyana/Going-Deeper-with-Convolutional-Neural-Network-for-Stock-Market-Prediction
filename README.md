@@ -20,7 +20,7 @@ Predict the stock market price will go up or not in the near future.
 
 ## Usage
 ### Prepare Environment
-Running on Python3
+Running on Python3.5
 ```
 pip install -U -r requirements.txt
 ```
