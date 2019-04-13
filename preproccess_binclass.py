@@ -113,20 +113,17 @@ def createLabel(fname, seq_len):
     df.reset_index(inplace=True)
     df['Date'] = df['Date'].map(mdates.date2num)
     for i in range(0, len(df)):
-        c = df.ix[i:i + int(seq_len), :]
+        c = df.ix[i:i + int(seq_len) + 1, :]
         starting = 0
         endvalue = 0
         label = ""
-        # print("len(c) is {}".format(len(c)))
-        # print(c)
-        # label 1 if price in the end of period higher then the start point of period
-        # otherwise it will be 0
+
         if len(c) == int(seq_len) + 1:
             for idx, val in enumerate(c['Close']):
                 # print(idx,val)
-                if idx == 0:
-                    starting = float(val)
                 if idx == len(c) - 1:
+                    starting = float(val)
+                if idx == len(c):
                     endvalue = float(val)
             if endvalue > starting:
                 label = 1
@@ -164,6 +161,7 @@ def ohlc2cs(fname, seq_len, dataset_type, dimension):
     for i in range(0, len(df)):
         # ohlc+volume
         useVolume = False
+        c = df.ix[i:i + int(seq_len) - 1, :]
         if len(c) == int(seq_len):
             my_dpi = 96
             fig = plt.figure(figsize=(dimension / my_dpi,
