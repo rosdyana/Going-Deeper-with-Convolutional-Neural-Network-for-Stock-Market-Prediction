@@ -57,13 +57,11 @@ def dataset(base_dir, n):
         for filename in files:
             file_path = os.path.join(root, filename)
             assert file_path.startswith(base_dir)
-            suffix = file_path[len(base_dir):]
-            suffix = suffix.lstrip("/")
-            label = suffix.split("/")[0]
+            label = os.path.split(root)[-1]
             d[label].append(file_path)
 
     tags = sorted(d.keys())
-    X = []
+    x = []
     y = []
 
     for class_index, class_name in enumerate(tags):
@@ -72,21 +70,21 @@ def dataset(base_dir, n):
             img = io.imread(filename)
             height, width, chan = img.shape
             assert chan == 3
-            X.append(img)
+            x.append(img)
             y.append(class_index)
 
-    X = np.array(X).astype(np.float32)
+    x = np.array(x).astype(np.float32)
     y = np.array(y)
 
-    return X, y, tags
+    return x, y, tags
 
 
 def build_dataset(data_directory, img_width):
     from tensorflow.keras import utils
     
-    X, y, tags = dataset(data_directory, int(img_width))
+    x, y, tags = dataset(data_directory, int(img_width))
     nb_classes = len(tags)
 
-    feature = X
+    feature = x
     label = utils.to_categorical(y, nb_classes)
     return feature, label, nb_classes

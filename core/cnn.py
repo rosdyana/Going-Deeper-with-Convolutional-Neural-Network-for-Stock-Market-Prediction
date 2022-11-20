@@ -79,24 +79,24 @@ class cnn:
             metrics=['accuracy']
         )
 
-        X_train, Y_train, nb_classes = build_dataset(
+        x_train, y_train, nb_classes = build_dataset(
             "{}/train".format(self.input_dir),
             self.img_size)
-        X_test, Y_test, nb_classes = build_dataset(
+        x_test, y_test, nb_classes = build_dataset(
             "{}/test".format(self.input_dir),
             self.img_size)
 
         model.fit(
-            X_train,
-            Y_train,
+            x_train,
+            y_train,
             batch_size=self.batch_size,
             epochs=self.epochs)
 
-        predicted = model.predict(X_test)
+        predicted = model.predict(x_test)
         y_pred = np.argmax(predicted, axis=1)
-        Y_test = np.argmax(Y_test, axis=1)
-        cm = confusion_matrix(Y_test, y_pred)
-        report = classification_report(Y_test, y_pred)
+        y_test = np.argmax(y_test, axis=1)
+        cm = confusion_matrix(y_test, y_pred)
+        report = classification_report(y_test, y_pred)
         tn = cm[0][0]
         fn = cm[1][0]
         tp = cm[1][1]

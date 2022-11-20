@@ -12,7 +12,7 @@ class deepcandle:
         self.test_start_date = config['base']['test_start'] if config['base']['test_start'] else None
         self.test_end_date = config['base']['test_end'] if config['base']['test_end'] else None
         self.window_size = int(config['base']['window_size'])
-        self.clean = bool(config['base']['clean'])
+        self.clean = int(config['base']['clean'])
 
     def clean_dataset(self):
         import shutil
